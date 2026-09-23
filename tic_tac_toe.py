@@ -1,7 +1,7 @@
 """Two-player Tic Tac Toe with a tkinter GUI.
 
 Run with: python3 tic_tac_toe.py
-Play against the computer with e.g.: python3 tic_tac_toe.py --opponent minimax
+Play against the computer with e.g.: python3 tic_tac_toe.py --opponent heuristic
 """
 
 import tkinter as tk

@@ -46,7 +46,7 @@ PAGE = """<!DOCTYPE html>
     <option value="human">Human</option>
     <option value="random">Computer: random</option>
     <option value="heuristic">Computer: heuristic</option>
-    <option value="minimax">Computer: minimax</option>
+    <!-- <option value="minimax">Computer: minimax</option> -->
   </select>
 </div>
 <button id="reset">New Game</button>

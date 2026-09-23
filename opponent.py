@@ -57,48 +57,48 @@ class HeuristicOpponent(Opponent):
         return None
 
 
-class MinimaxOpponent(Opponent):
-    """AI strategy: exhaustive minimax search. Plays perfectly (never loses)."""
-
-    def __init__(self):
-        self._cache = {}  # (board, to_play, me) -> (score, move); keeps the search fast
-
-    def choose_move(self, board, mark):
-        _, move = self._minimax(list(board), to_play=mark, me=mark)
-        return move
-
-    def _minimax(self, board, to_play, me):
-        key = (tuple(board), to_play, me)
-        if key in self._cache:
-            return self._cache[key]
-        result = self._search(board, to_play, me)
-        self._cache[key] = result
-        return result
-
-    def _search(self, board, to_play, me):
-        winner = winner_of(board)
-        if winner == "Draw":
-            return 0, None
-        if winner is not None:
-            return (1 if winner == me else -1), None
-
-        best_score, best_move = None, None
-        for i in empty_squares(board):
-            board[i] = to_play
-            score, _ = self._minimax(board, other(to_play), me)
-            board[i] = ""
-            maximizing = to_play == me
-            if (
-                best_score is None
-                or (maximizing and score > best_score)
-                or (not maximizing and score < best_score)
-            ):
-                best_score, best_move = score, i
-        return best_score, best_move
+# class MinimaxOpponent(Opponent):
+#     """AI strategy: exhaustive minimax search. Plays perfectly (never loses)."""
+#
+#     def __init__(self):
+#         self._cache = {}  # (board, to_play, me) -> (score, move); keeps the search fast
+#
+#     def choose_move(self, board, mark):
+#         _, move = self._minimax(list(board), to_play=mark, me=mark)
+#         return move
+#
+#     def _minimax(self, board, to_play, me):
+#         key = (tuple(board), to_play, me)
+#         if key in self._cache:
+#             return self._cache[key]
+#         result = self._search(board, to_play, me)
+#         self._cache[key] = result
+#         return result
+#
+#     def _search(self, board, to_play, me):
+#         winner = winner_of(board)
+#         if winner == "Draw":
+#             return 0, None
+#         if winner is not None:
+#             return (1 if winner == me else -1), None
+#
+#         best_score, best_move = None, None
+#         for i in empty_squares(board):
+#             board[i] = to_play
+#             score, _ = self._minimax(board, other(to_play), me)
+#             board[i] = ""
+#             maximizing = to_play == me
+#             if (
+#                 best_score is None
+#                 or (maximizing and score > best_score)
+#                 or (not maximizing and score < best_score)
+#             ):
+#                 best_score, best_move = score, i
+#         return best_score, best_move
 
 
 OPPONENTS = {
     "random": RandomOpponent,
     "heuristic": HeuristicOpponent,
-    "minimax": MinimaxOpponent,
+    # "minimax": MinimaxOpponent,
 }
