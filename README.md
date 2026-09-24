@@ -27,5 +27,7 @@ Use the "O is played by" dropdown to pick an opponent.
   - `random`: any legal move
   - `heuristic`: win / block / center / corners / edges
   - `minimax`: exhaustive search, never loses
+  - `ai`: backed by the OpenAI API (needs `OPENAI_API_KEY`; core logic TODO)
+  - `jev`: backed by TypeSafe's Jev API (needs `TYPESAFE_API_KEY`)
 
 To add a new strategy, subclass `Opponent` in `opponent.py` and register it in `OPPONENTS`.
